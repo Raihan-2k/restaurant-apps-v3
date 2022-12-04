@@ -1,14 +1,12 @@
-import { itActsAsFavoriteRestoModel } from './contract/favoriteRestoContract';
-import favoriteRestaurant from '../src/scripts/data/favorite-restaurant-idb';
+import FavoriteRestaurantIdb from '../src/scripts/data/favorite-restaurant-idb';
+import { itActsAsFavoriteRestaurantModel } from './contract/favoriteRestaurantContract';
 
-// eslint-disable-next-line no-undef
 describe('Favorite Restaurant Idb Contract Test Implementation', () => {
-  // eslint-disable-next-line no-undef
   afterEach(async () => {
-    (await favoriteRestaurant.getAllRestaurants()).forEach(async (restaurant) => {
-      await favoriteRestaurant.deleteRestaurant(restaurant.id);
+    (await FavoriteRestaurantIdb.getAllRestaurants()).forEach(async (restaurant) => {
+      await FavoriteRestaurantIdb.deleteRestaurant(restaurant.id);
     });
   });
 
-  itActsAsFavoriteRestoModel(favoriteRestaurant);
+  itActsAsFavoriteRestaurantModel(FavoriteRestaurantIdb);
 });

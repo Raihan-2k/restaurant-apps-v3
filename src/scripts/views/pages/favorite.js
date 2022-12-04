@@ -1,24 +1,19 @@
 import FavoriteRestaurantIdb from '../../data/favorite-restaurant-idb';
-import { createRestaurantItemTemplate } from '../templates/template-creator';
+import FavoriteRestaurantSearchPresenter from './favorited-restaurants/favorite-restaurant-search-presenter';
+import FavoriteRestaurantSearchView from './favorited-restaurants/favorite-restaurant-search-view';
+import FavoriteRestaurantShowPresenter from './favorited-restaurants/favorite-restaurant-show-presenter';
 
-const favorite = {
+const view = new FavoriteRestaurantSearchView();
+
+const Favorite = {
   async render() {
-    return `
-    <div class="hero"></div>
-    <h2 class="explore__title">Favorited Restaurant</h2>
-    <div class="restaurant__list" id="restaurants"></div>
-    `;
+    return view.getTemplate();
   },
 
   async afterRender() {
-    // Fungsi ini akan dipanggil setelah render()
-    const restaurants = await FavoriteRestaurantIdb.getAllRestaurants();
-    const restaurantsContainer = document.querySelector('#restaurants');
-
-    restaurants.forEach((restaurant) => {
-      restaurantsContainer.innerHTML += createRestaurantItemTemplate(restaurant);
-    });
+    new FavoriteRestaurantShowPresenter({ view, favoriteRestaurants: FavoriteRestaurantIdb });
+    new FavoriteRestaurantSearchPresenter({ view, favoriteRestaurants: FavoriteRestaurantIdb });
   },
 };
 
-export default favorite;
+export default Favorite;

@@ -1,8 +1,8 @@
-import CONFIG from "../../globals/config";
+import CONFIG from '../../globals/config';
 
 const createRestaurantDetailTemplate = (restaurant) => `
   <div class="restaurant__item">
-    <img src="${CONFIG.BASE_IMAGE_URL + restaurant.pictureId}" alt="${
+    <img src="${CONFIG.BASE_IMAGE_URL_LARGE + restaurant.pictureId}" alt="${
   restaurant.title
 }" />
     <h2 class="detail__title">${restaurant.name}</h2>
@@ -16,28 +16,14 @@ const createRestaurantDetailTemplate = (restaurant) => `
       <h4>Foods Menu</h4>
       <div class="detail__menu">
         ${restaurant.menus.foods
-          .map((food) => `<div class="detail__menu--name">${food.name}</div>`)
-          .join("")}
+    .map((food) => `<div class="detail__menu--name">${food.name}</div>`)
+    .join('')}
       </div>
       <h4>Drinks Menu</h4>
       <div class="detail__menu">
         ${restaurant.menus.drinks
-          .map((drink) => `<div class="detail__menu--name">${drink.name}</div>`)
-          .join("")}
-      </div>
-      <h3>Customer Reviews</h3>
-      <div class="detail__reviews">
-        ${restaurant.customerReviews
-          .map(
-            (review) => `
-            <div class="detail__reviews--card">
-              <h5>${review.name}</h5>
-              <span class="detail__reviews--card__date">${review.date}</span>
-              <p>${review.review}</p>
-            </div>
-          `
-          )
-          .join("")}
+    .map((drink) => `<div class="detail__menu--name">${drink.name}</div>`)
+    .join('')}
       </div>
     </div>
   </div>
@@ -46,35 +32,55 @@ const createRestaurantDetailTemplate = (restaurant) => `
 const createRestaurantItemTemplate = (restaurant) => `
   <div class="restaurant__item">
     <div class="card__header">
-      <div class="card__header__location">${restaurant.city}</div>
+      <div class="card__header__location">${restaurant.city || '-'}</div>
       <img
-        class="card__header__image"
-        src=${CONFIG.BASE_IMAGE_URL + restaurant.pictureId}
-        alt=""
+        class="card__header__image lazyload"
+        data-src=${
+  restaurant.pictureId
+    ? CONFIG.BASE_IMAGE_URL_SMALL + restaurant.pictureId
+    : 'https://picsum.photos/id/666/800/450?grayscale'
+}
+        alt="${restaurant.name || '-'}"
       />
     </div>
     <div class="card__body">
       <div class="card__body__rating">
-        Rating: <span id="rating">${restaurant.rating}</span>
+        Rating: <span id="rating">${restaurant.rating || '-'}</span>
       </div>
       <div class="card__body__name"><a href="/#/detail/${restaurant.id}">${
-  restaurant.name
+  restaurant.name || '-'
 }</a></div>
       <div class="card__body__description">
-        ${restaurant.description}
+        ${restaurant.description || '-'}
       </div>
     </div>
   </div>
 `;
 
-const createLikeButtonTemplate = () => `
-  <button aria-label="like this movie" id="likeButton" class="like">
+const createCustomerReviewsTemplate = (restaurant) => `
+  <div class="detail__reviews">
+    ${restaurant.customerReviews
+    .map(
+      (review) => `
+        <div class="detail__reviews--card">
+          <h5>${review.name}</h5>
+          <span class="detail__reviews--card__date">${review.date}</span>
+          <p>${review.review}</p>
+        </div>
+      `,
+    )
+    .join('')}
+  </div>
+`;
+
+const createLikeRestaurantButtonTemplate = () => `
+  <button aria-label="like this restaurant" id="likeButton" class="like">
     <i class="fa-regular fa-heart" aria-hidden="true"></i>
   </button>
 `;
 
-const createLikedButtonTemplate = () => `
-  <button aria-label="unlike this movie" id="likeButton" class="like">
+const createUnlikeRestaurantButtonTemplate = () => `
+  <button aria-label="unlike this restaurant" id="likeButton" class="like">
     <i class="fa-solid fa-heart" aria-hidden="true"></i>
   </button>
 `;
@@ -82,7 +88,8 @@ const createLikedButtonTemplate = () => `
 export {
   createRestaurantItemTemplate,
   createRestaurantDetailTemplate,
-  createLikeButtonTemplate,
-  createLikedButtonTemplate,
+  createCustomerReviewsTemplate,
+  createLikeRestaurantButtonTemplate,
+  createUnlikeRestaurantButtonTemplate,
 };
 // eslint-disable-next-line no-multiple-empty-lines

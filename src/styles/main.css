@@ -1,24 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Roboto+Mono:wght@500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Roboto+Mono:wght@500&display=swap");
 
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
- 
+
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   background-color: white;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
- 
- 
+
 /*
   AppBar
 */
- 
+
 .app-bar {
   padding: 8px 16px;
   background-color: white;
@@ -30,12 +29,12 @@ body {
   z-index: 99;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
 }
- 
+
 .app-bar .app-bar__menu {
   display: flex;
   align-items: center;
 }
- 
+
 .app-bar .app-bar__menu button {
   background-color: transparent;
   border: none;
@@ -45,19 +44,19 @@ body {
   min-width: 44px;
   min-height: 44px;
 }
- 
+
 .app-bar .app-bar__brand {
   display: flex;
   align-items: center;
 }
- 
+
 .app-bar .app-bar__brand h1 {
   color: #db0000;
   text-transform: uppercase;
   font-size: 22px;
   user-select: none;
 }
- 
+
 .app-bar .app-bar__navigation {
   position: absolute;
   top: 50px;
@@ -65,10 +64,10 @@ body {
   transition: all 0.3s;
   background-color: white;
   overflow: hidden;
-  
+
   padding-top: 1.5em;
 }
- 
+
 .app-bar .app-bar__navigation.open {
   left: 0;
 }
@@ -80,7 +79,7 @@ body {
   min-width: 150px;
   margin-left: 1em;
 }
- 
+
 .app-bar .app-bar__navigation ul li a {
   display: inline-block;
   text-decoration: none;
@@ -93,52 +92,50 @@ body {
 /*
   Main Content
 */
- 
+
 main {
   flex: 1;
 }
- 
+
 .content {
   margin: 0 auto;
   min-height: 100%;
 }
- 
+
 .content .content__heading {
   font-weight: normal;
 }
- 
- 
+
 /*
   Movies
 */
- 
+
 .restaurant {
   display: grid;
   grid-template-columns: 1fr;
   gap: 16px;
   margin: 32px 0;
 }
- 
- 
+
 /*
   Movie Item
 */
- 
+
 .restaurant-item {
   width: 100%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   border-radius: 8px;
   overflow: hidden;
 }
- 
+
 .restaurant-item__header {
   position: relative;
 }
- 
+
 .restaurant-item .restaurant-item__header .restaurant-item__header__poster {
   width: 100%;
 }
- 
+
 .restaurant-item .restaurant-item__header .restaurant-item__header__rating {
   position: absolute;
   padding: 8px;
@@ -148,24 +145,27 @@ main {
   background-color: black;
   color: white;
 }
- 
-.restaurant-item .restaurant-item__header .restaurant-item__header__rating .restaurant-item__header__rating__score {
+
+.restaurant-item
+  .restaurant-item__header
+  .restaurant-item__header__rating
+  .restaurant-item__header__rating__score {
   margin-left: 10px;
 }
- 
+
 .restaurant-item .restaurant-item__content {
   padding: 16px;
 }
- 
+
 .restaurant-item .restaurant-item__content h3 {
   margin: 0 0 10px 0;
 }
- 
+
 .restaurant-item .restaurant-item__content h3 a {
   color: #db0000;
   text-decoration: none;
 }
- 
+
 .restaurant-item .restaurant-item__content p {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -173,12 +173,11 @@ main {
   -webkit-line-clamp: 4; /* number of lines to show */
   -webkit-box-orient: vertical;
 }
- 
- 
+
 /*
   Movie
 */
- 
+
 .restaurant {
   margin: 0 auto;
   width: 100%;
@@ -187,18 +186,16 @@ main {
   grid-template-columns: 1fr;
   gap: 18px 16px;
 }
- 
+
 .restaurant .restaurant__poster {
   width: 100%;
   max-width: 400px;
 }
- 
+
 .restaurant .restaurant__info h4 {
   margin: 8px 0;
 }
- 
- 
- 
+
 /*
   Footer
 */
@@ -226,7 +223,7 @@ skip content
 
 .header {
   min-height: 56px;
-  background-color: #D3E4CD;
+  background-color: #d3e4cd;
   padding-bottom: 20px;
 }
 
@@ -254,13 +251,9 @@ skip content
   border: transparent;
 }
 
-
 /*
  * Top level navigation
  */
-
-
-
 
 /*
  * Jumbotron
@@ -295,11 +288,9 @@ skip content
   font-weight: 300;
 }
 
-
 /*
  * main
  */
-
 
 /*
  * content
@@ -311,14 +302,9 @@ skip content
 
 /* Resto */
 
-
 /*
  * post item
  */
-
-
-
-
 
 /*
  * footer
@@ -339,13 +325,13 @@ footer {
   place-items: center;
   background-color: red;
   box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
-  
+
   position: fixed;
   bottom: 2rem;
   right: 3rem;
   border-radius: 50%;
   border: 0;
-  
+
   font-size: 1.5rem;
   color: white;
   cursor: pointer;
@@ -380,18 +366,19 @@ footer {
   backdrop-filter: blur(13px);
   border: 1px solid rgba(255, 255, 255, 0.3);
   overflow: hidden;
-  
 }
 
 .card p {
   -webkit-line-clamp: 4; /* number of lines to show */
   -webkit-box-orient: vertical;
-
 }
 
-.restaurant__detail{
-  max-width: 80%;
+.restaurant__detail {
+  max-width: 50%;
   margin-inline: auto;
+}
+.restaurant__detail img {
+  width: 100%;
 }
 
 .card__header {
@@ -417,7 +404,7 @@ footer {
 
 .card__body {
   padding: 1rem;
-  -webkit-line-clamp: 4; 
+  -webkit-line-clamp: 4;
 }
 .card__body__rating {
   font-weight: bold;
@@ -427,14 +414,13 @@ footer {
   font-weight: bold;
   margin-block-end: 0.5em;
   color: purple;
-
 }
-.card__body__name a{
+.card__body__name a {
   text-decoration: none;
   min-width: 44px;
   min-height: 44px;
   display: block;
- }
+}
 
 .card__body__description {
   font-size: 0.7rem;
@@ -455,11 +441,6 @@ footer {
   margin-block-end: 2em;
 }
 
-
-
-
-
-
 .detail__reviews {
   margin-block-end: 2em;
 }
@@ -475,5 +456,3 @@ footer {
   font-size: 0.75rem;
   color: rgba(0, 0, 0, 0.5);
 }
-
-

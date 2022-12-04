@@ -1,7 +1,6 @@
 import 'regenerator-runtime';
 import '../styles/main.css';
 import '../styles/responsive.css';
-import filter from 'lodash.filter';
 import swRegister from './utils/sw-register';
 import 'lazysizes';
 import 'lazysizes/plugins/parent-fit/ls.parent-fit';
@@ -21,5 +20,3 @@ window.addEventListener('load', () => {
   app.renderPage();
   swRegister();
 });
-
-filter((module) => module.default);

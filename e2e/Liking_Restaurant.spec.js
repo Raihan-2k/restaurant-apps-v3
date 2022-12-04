@@ -1,5 +1,5 @@
 Feature('Liking Restaurant');
 
-Scenario('test something',  ({ I }) => {
+Scenario('test something', ({ I }) => {
 
 });

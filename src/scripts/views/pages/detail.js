@@ -1,22 +1,31 @@
+import FavoriteRestaurantIdb from '../../data/favorite-restaurant-idb';
 import RestaurantSource from '../../data/restaurant-source';
 import UrlParser from '../../routes/url-parser';
-import {
-  createRestoDetailTemplate,
-  createLikeRestoButtonTemplate,
-  RestoDrinksTemplate,
-  RestoFoodsTemplate,
-  RestoReviewTemplate,
-} from '../templates/template-creator';
-import LikeButtonInitiator from '../../utils/like-button-presenter';
-import favoriteRestaurant from '../../data/favorite-restaurant-idb';
+import LikeButtonPresenter from '../../utils/like-button-presenter';
+import { createCustomerReviewsTemplate, createRestaurantDetailTemplate } from '../templates/template-creator';
 
 const Detail = {
   async render() {
     return `
-    <div class="hero"></div>
-    <h2 class="explore__title">Detail of Restaurant</h2>
-    <div class="restaurant__detail" id="restaurant"></div>
-    <div id="likeButtonContainer"></div>
+      <div class="hero">
+        <picture>
+          <source media="(max-width: 600px)" srcset="./images/hero-image-small.webp">
+          <img src='./images/hero-image-medium.webp' alt=" " class="hero">
+        </picture>
+      </div>
+      <h2 class="explore__title">Detail of Restaurant</h2>
+      <div class="restaurant__detail" id="restaurant"></div>
+      <div id="add-review">
+        <h3>Customer Reviews</h3>
+        <form class="add-review__form">
+          <input type="text" class="detail__reviews__name" placeholder="Who are you ?" required/>
+          <input type="text" class="detail__reviews__add" placeholder="Write something..." required/>
+          <button class="detail__reviews__submit" type="submit">Post Comment</button>
+        </form>
+        <div id="comments"></div>
+      </div>
+      <div class="lds-facebook"><div></div><div></div><div></div></div>
+      <div id="likeButtonContainer"></div>
     `;
   },
 
@@ -24,14 +33,37 @@ const Detail = {
     const url = UrlParser.parseActiveUrlWithoutCombiner();
     const restaurant = await RestaurantSource.detailRestaurant(url.id);
     const restaurantContainer = document.querySelector('#restaurant');
-    const likeButtonContainer = document.querySelector('#likeButtonContainer');
+    restaurantContainer.innerHTML = createRestaurantDetailTemplate(restaurant);
 
-    restaurantContainer.innerHTML = createRestoDetailTemplate(restaurant);
-    likeButtonContainer.innerHTML = createLikeRestoButtonTemplate();
+    const nameInput = document.querySelector('.detail__reviews__name');
+    const reviewInput = document.querySelector('.detail__reviews__add');
+    const addReviewContainer = document.querySelector('.add-review__form');
 
-    LikeButtonInitiator.init({
+    const commentsContainer = document.querySelector('#comments');
+
+    const restaurantDetailReviews = await RestaurantSource.detailRestaurant(url.id);
+    commentsContainer.innerHTML = createCustomerReviewsTemplate(restaurantDetailReviews);
+
+    addReviewContainer.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const review = {
+        id: restaurant.id,
+        name: nameInput.value,
+        review: reviewInput.value,
+      };
+
+      const restaurantReviews = await RestaurantSource.addReview(review);
+      commentsContainer.innerHTML = createCustomerReviewsTemplate(restaurantReviews);
+
+      // clear value
+      nameInput.value = '';
+      reviewInput.value = '';
+    });
+
+    LikeButtonPresenter.init({
       likeButtonContainer: document.querySelector('#likeButtonContainer'),
-      favoriteResto: favoriteRestaurant,
+      favoriteRestaurants: FavoriteRestaurantIdb,
       restaurant: {
         id: restaurant.id,
         city: restaurant.city,
@@ -41,58 +73,9 @@ const Detail = {
         description: restaurant.description,
       },
     });
-    const foods = await RestaurantSource.detailRestaurantFood(url.id);
-    const foodContainer = document.querySelector('#food');
-    foods.forEach((food) => {
-      foodContainer.innerHTML += RestoFoodsTemplate(food);
-    });
-    const drinks = await RestaurantSource.detailRestaurantDrink(url.id);
-    const drinkContainer = document.querySelector('#drink');
-    drinks.forEach((drink) => {
-      drinkContainer.innerHTML += RestoDrinksTemplate(drink);
-    });
-    const reviews = await RestaurantSource.customerReviews(url.id);
-    const reviewContainer = document.querySelector('#review');
-    reviews.forEach((review) => {
-      reviewContainer.innerHTML += RestoReviewTemplate(review);
-    });
 
-    const nameinput = document.querySelector('#input-name');
-    const reviewinput = document.querySelector('#input-review');
-    const reviewsubmit = document.querySelector('#add');
-    reviewsubmit.addEventListener('click', async (event) => {
-      const review = {
-        id: restaurant.id,
-        name: nameinput.value,
-        review: reviewinput.value,
-      };
-      if (nameinput.value === '' || reviewinput.value === '') {
-        // alert('Required name and review!!');
-        alert.fire({
-          position: 'center',
-          icon: 'error',
-          title: 'Required name and review!!',
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      } else {
-        event.preventDefault();
-        alert.fire({
-          title: `Do you want to review ${restaurant.name}?`,
-          showDenyButton: true,
-          showCancelButton: true,
-          confirmButtonText: 'Yes',
-        }).then(async (result) => {
-          if (result.isConfirmed) {
-            alert.fire('Thanks for review!', '', 'success').then(
-              await RestaurantSource.addReview(review).then(() => {
-                location.reload();
-              }),
-            );
-          }
-        });
-      }
-    });
+    const loader = document.querySelector('.lds-facebook');
+    loader.style.display = 'none';
   },
 };
 
