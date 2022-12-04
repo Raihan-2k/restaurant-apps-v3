@@ -374,7 +374,7 @@ footer {
 }
 
 .restaurant__detail {
-  max-width: 50%;
+  max-width: 80%;
   margin-inline: auto;
 }
 .restaurant__detail img {
