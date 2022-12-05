@@ -6,8 +6,8 @@ const RestaurantPage = {
     return `
       <div class="hero">
         <picture>
-          <source media="(max-width: 600px)" srcset="./images/hero-image-small.webp">
-          <img src='./images/hero-image-medium.webp' alt=" " class="hero">
+        <source media="(max-width: 600px)" srcset="./images/hero-image_4-small.webp">
+        <img src='./images/hero-image_4-large.webp' alt=" " class="hero">
         </picture>
       </div>
       <h2 class="explore__title">Explore Restaurant</h2>

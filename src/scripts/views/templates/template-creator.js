@@ -1,4 +1,4 @@
-import CONFIG from '../../globals/config';
+import CONFIG from "../../globals/config";
 
 const createRestaurantDetailTemplate = (restaurant) => `
   <div class="restaurant__item">
@@ -16,14 +16,14 @@ const createRestaurantDetailTemplate = (restaurant) => `
       <h4>Foods Menu</h4>
       <div class="detail__menu">
         ${restaurant.menus.foods
-    .map((food) => `<div class="detail__menu--name">${food.name}</div>`)
-    .join('')}
+          .map((food) => `<div class="detail__menu--name">${food.name}</div>`)
+          .join("")}
       </div>
       <h4>Drinks Menu</h4>
       <div class="detail__menu">
         ${restaurant.menus.drinks
-    .map((drink) => `<div class="detail__menu--name">${drink.name}</div>`)
-    .join('')}
+          .map((drink) => `<div class="detail__menu--name">${drink.name}</div>`)
+          .join("")}
       </div>
     </div>
   </div>
@@ -32,26 +32,26 @@ const createRestaurantDetailTemplate = (restaurant) => `
 const createRestaurantItemTemplate = (restaurant) => `
   <div class="restaurant__item">
     <div class="card__header">
-      <div class="card__header__location">${restaurant.city || '-'}</div>
+      <div class="card__header__location">${restaurant.city || "-"}</div>
       <img
         class="card__header__image lazyload"
         data-src=${
-  restaurant.pictureId
-    ? CONFIG.BASE_IMAGE_URL_SMALL + restaurant.pictureId
-    : 'https://picsum.photos/id/666/800/450?grayscale'
-}
-        alt="${restaurant.name || '-'}"
+          restaurant.pictureId
+            ? CONFIG.BASE_IMAGE_URL_SMALL + restaurant.pictureId
+            : "https://picsum.photos/id/666/800/450?grayscale"
+        }
+        alt="${restaurant.name || "-"}"
       />
     </div>
     <div class="card__body">
       <div class="card__body__rating">
-        Rating: <span id="rating">${restaurant.rating || '-'}</span>
+        Rating: <span id="rating">${restaurant.rating || "-"}</span>
       </div>
       <div class="card__body__name"><a href="/#/detail/${restaurant.id}">${
-  restaurant.name || '-'
+  restaurant.name || "-"
 }</a></div>
       <div class="card__body__description">
-        ${restaurant.description || '-'}
+        ${restaurant.description || "-"}
       </div>
     </div>
   </div>
@@ -60,16 +60,16 @@ const createRestaurantItemTemplate = (restaurant) => `
 const createCustomerReviewsTemplate = (restaurant) => `
   <div class="detail__reviews">
     ${restaurant.customerReviews
-    .map(
-      (review) => `
+      .map(
+        (review) => `
         <div class="detail__reviews--card">
           <h5>${review.name}</h5>
           <span class="detail__reviews--card__date">${review.date}</span>
           <p>${review.review}</p>
         </div>
-      `,
-    )
-    .join('')}
+      `
+      )
+      .join("")}
   </div>
 `;
 

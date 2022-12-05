@@ -260,16 +260,18 @@ skip content
  */
 
 .hero {
-  display: flex;
   align-items: center;
   width: 100%;
   min-height: 430px;
   text-align: center;
   background-position: center;
-  background-image: url("../public/images/hero-image_4.jpg");
-  background-color: green;
 }
 
+.hero img {
+  max-width: auto;
+  max-height: 530px;
+  object-fit: cover;
+}
 .hero__inner {
   margin: 0 auto;
   max-width: 800px;
@@ -309,6 +311,21 @@ skip content
 /*
  * footer
  */
+
+.search-query {
+  min-width: 30rem;
+  margin-inline: auto;
+  display: block;
+  font-family: inherit;
+  background-color: #d6e4e5;
+  border: none;
+  border-radius: 0.5em;
+  padding-inline: 4em;
+  margin-block-end: 1em;
+  box-shadow: 0 25px 30px -20px #000;
+  padding: 1.7em;
+  text-align: center;
+}
 
 footer {
   background-color: #2c3e50;
@@ -366,11 +383,7 @@ footer {
   backdrop-filter: blur(13px);
   border: 1px solid rgba(255, 255, 255, 0.3);
   overflow: hidden;
-}
-
-.card p {
-  -webkit-line-clamp: 4; /* number of lines to show */
-  -webkit-box-orient: vertical;
+  align-items: center;
 }
 
 .restaurant__detail {
@@ -424,9 +437,7 @@ footer {
 
 .card__body__description {
   font-size: 0.7rem;
-  display: -webkit-box;
-  -webkit-line-clamp: 4; /* number of lines to show */
-  -webkit-box-orient: vertical;
+  display: block;
 }
 .detail__body {
   padding-inline: 2em;

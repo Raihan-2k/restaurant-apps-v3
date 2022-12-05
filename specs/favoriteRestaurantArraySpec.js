@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { itActsAsFavoriteRestaurantModel } from './contract/favoriteRestaurantContract';
 
 let favoriteRestaurants = [];
