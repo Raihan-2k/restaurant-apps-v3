@@ -30,7 +30,8 @@
         "no-new": 0,
         "no-plusplus": 0,
         "no-await-in-loop": 0,
-        "no-undef": 0
+        "no-undef": 0,
+        "codeceptjs/no-actor-in-scenario": 2
     },
     "plugins": ["jasmine", "codeceptjs"]
 }

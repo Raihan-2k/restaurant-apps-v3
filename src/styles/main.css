@@ -169,9 +169,6 @@ main {
 .restaurant-item .restaurant-item__content p {
   overflow: hidden;
   text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 4; /* number of lines to show */
-  -webkit-box-orient: vertical;
 }
 
 /*
@@ -323,7 +320,8 @@ skip content
   padding-inline: 4em;
   margin-block-end: 1em;
   box-shadow: 0 25px 30px -20px #000;
-  padding: 1.7em;
+  min-height: 44px;
+  min-width: auto;
   text-align: center;
 }
 
@@ -438,6 +436,9 @@ footer {
 .card__body__description {
   font-size: 0.7rem;
   display: block;
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* number of lines to show */
+  -webkit-box-orient: vertical;
 }
 .detail__body {
   padding-inline: 2em;
